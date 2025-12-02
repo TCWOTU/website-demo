@@ -1,0 +1,204 @@
+/* Basic Reset and Typography */
+body {
+    font-family: "Komika Slick", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Header Styling */
+header {
+    background-color: #754444;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Navigation Styling */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Main Content and Section Styling */
+main {
+    padding: 20px;
+}
+
+section {
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#hero {
+    text-align: center;
+    background-color: #e0f7fa;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00bcd4;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.button2 { display: inline-block;
+    padding: 10px 20px;
+    background-color: #3cd2e5;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 5px;}
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+   .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 0px;
+  }
+ 
+  .image-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0px;
+
+  }
+
+@media (min-width: 600px) {
+  .header {grid-area: 1 / span 6;}
+  .menu {grid-area: 2 / span 1;}
+  .content {grid-area: 2 / span 4;}
+  .facts {grid-area: 2 / span 1;}
+  .footer {grid-area: 3 / span 6;}
+}
+
+* {
+  box-sizing: border-box;
+    text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+  'header'
+  'menu'
+  'main'
+  'facts'
+  'footer';
+  background-color: white;
+  gap: 10px;
+}
+   
+
+
+/*Comic reader stuff*/
+
+#comic-reader {
+    width: 100%;
+    max-width: 1000px; /* Max width for a good reading experience */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+#reader-content {
+     width: 100%;
+    max-width: 1000px; /* Max width for a good reading experience */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.comic-container {
+            max-width: 10000px; /* Limit the width of the comic image area */
+            margin: 0 auto;
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+#page-display {
+    margin: 15px 0;
+    min-height: 500px; /* Prevents layout shift on initial load */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#comic-page {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block; /* Removes extra space under the image */
+}
+
+#navigation-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#navigation-controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+#navigation-controls button:hover:not(:disabled) {
+    background-color: #555;
+}
+
+#navigation-controls button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+#page-counter {
+    font-weight: bold;
+    font-size: 1.1em;
+}
