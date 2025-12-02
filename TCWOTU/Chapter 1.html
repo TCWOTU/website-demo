@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 1</title>
     <style>
-        /* Basic CSS for the layout */
+            /* Basic CSS for the layout */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -14,7 +14,20 @@
             text-align: center; /* Center content like the comic image */
         }
 
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+            margin-bottom: 20px;
+        }
 
+        .comic-container {
+            max-width: 800px; /* Limit the width of the comic image area */
+            margin: 0 auto;
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
         .comic-page {
             max-width: 100%;
@@ -63,15 +76,16 @@
     </style>
 </head>
 <body>
-    <header>
-       <div class="navigation">
-        <a href="#" class="disabled">
+  <header>
+        <div> Chapter 1 </div>
+    <div class="navigation">
+        <a href="Chapter%201.html">
             &laquo; Previous Chapter
         </a>
         <a href="TCWOTU.html">
             Chapter List
         </a>
-        <a href="chapter-2.html">
+        <a href="Chapter 2.html">
             Next Chapter &raquo;
         </a>
     </div>
@@ -140,5 +154,4 @@
     </footer>
 
 </body>
-
 </html>
