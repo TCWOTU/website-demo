@@ -4,72 +4,197 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title> The Crushing Weight Of This Universe</title>
-        <link rel="stylesheet" href="style.css">
+        <style>
+        /*
+        -----------------
+        1. General Setup
+        -----------------
+        */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+            
+                h2 {
+            text-align: center;
+                    font-family: Helvetica, sans-serif;
+                    font-size: medium;
+                    font-weight: 100;
+            color: #333333;
+            margin-bottom: 30px;
+        }
+
+        /*
+        -----------------
+        2. Grid Container (Flexbox)
+        -----------------
+        */
+        .grid-container {
+            /* Enable Flexbox on the container */
+            display: flex;
+            /* Allow items to wrap to the next line */
+            flex-wrap: wrap;
+            /* Space between columns/rows (using CSS Gap) */
+            gap: 15px;
+            /* Center the grid horizontally */
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /*
+        -----------------
+        3. Grid Items (Images)
+        -----------------
+        */
+        .grid-item {
+            /* Initially, set the items to take up about 30% of the container width */
+            /* The 'calc' function helps account for the gap space. */
+            flex: 1 1 calc(33.333% - 10px); /* Grow | Shrink | Basis */
+            min-width: 250px; /* Ensure a minimum size before wrapping */
+            box-sizing: border-box;
+            overflow: hidden; /* Hide anything that spills out of the div */
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.03);
+        }
+
+        .grid-item img {
+            /* Make the image take up the full width of its parent (.grid-item) */
+            width: auto;
+            /* Maintain the aspect ratio and crop if necessary to fill the container */
+            height: 100%; /* Fixed height for visual uniformity */
+            object-fit: cover;
+            display: block; /* Removes any extra space below the image */
+        }
+
+        /*
+        -----------------
+        4. Responsiveness (Media Queries)
+        -----------------
+        */
+        /* For Tablets (Screens up to 768px wide) */
+        @media (max-width: 768px) {
+            .grid-item {
+                /* Change to 2 columns (50% each) */
+                flex: 1 1 calc(50% - 10px);
+            }
+        }
+
+        /* For Mobile Devices (Screens up to 480px wide) */
+        @media (max-width: 480px) {
+            .grid-item {
+                /* Change to 1 column (100% width) */
+                flex: 1 1 100%;
+            }
+
+            .grid-item img {
+                height: 200px; /* Slightly smaller height on mobile */
+            }
+        }
+            img {
+            max-width: 100%;
+            height: auto;
+            border: 5px solid #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 1px;
+        }
+
+    </style>
             </head>
     
     <body>
-        <div class="container">
-    <div class="text">
-    </div>
-    <div class="image-wrapper">
-  
-        </div></div>
-        
-        
-        
-        <div class ="grid-container">
-            <div class="header"><h1>Read</h1>
-
-                <div class="menu">
-                    <a href="Chapter 1.html" class="button2">Chapter 1</a>
-                    <a href="Chapter 2.html" class="button2">Chapter 2</a>
-                    <a href="Chapter 3.html" class="button2">Chapter 3</a>
-                    <a href="Chapter 4.html" class="button2">Chapter 4</a>
-                    <a href="Chapter 5.html" class="button2">Chapter 5</a>
-                    <a href="Chapter 6.html" class="button2">Chapter 6</a>
-                    <a href="Chapter 7.html" class="button2">Chapter 7</a>
-                    <a href="Chapter 8.html" class="button2">Chapter 8</a>
-                    <a href="Chapter 9.html" class="button2">Chapter 9</a>
-                    <a href="Chapter 10.html" class="button2">Chapter 10</a>
-                    <a href="TCWOTU.html" class="button2">Chapter 11</a>
-                    <a href="TCWOTU.html" class="button2">Chapter 12</a>
-                    <a href="TCWOTU.html" class="button2">Chapter 13</a>
-                    <a href="TCWOTU.html" class="button2">Chapter 14</a>
-                    <a href="TCWOTU.html" class="button2">Chapter 15</a>
-    
-    </div></div></div>
-         <div class ="grid-container">
-        //* <div class="chapter-selector-container">
-    <label for="chapter-select">Jump to Chapter:</label>
-    <select id="chapter-select" onchange="goToChapter()">
-        <option value="disabled selected">Select a Chapter</option>
-        <option value="Chapter 1">Chapter 1: Here We Go Again</option>
-        <option value="/manga/series-name/chapter-2">Chapter 2: New Rivals</option>
-        <option value="/manga/series-name/chapter-3">Chapter 3: Final Battle (Current)</option>
-        <option value="/manga/series-name/chapter-4">Chapter 4: Epilogue</option>
-        </select>
-</div>
-        
-<div id="comic-reader">
-        <div id="navigation-controls">
-            <button id="prev-page">
-                &lt; Previous
-            </button>
-            <span id="page-counter">Page 1 of 5</span>
-            <button id="next-page">
-            Next &gt;
-            </button>
+            <div class="header">
+            <h1>
+            <picture>
+        <source media="(max-width: 600px)" srcset="TCWOTU/Banner Mobile.png" alt="Mobile View - Small, cropped image.">
+        <source media="(max-width: 1000px)" srcset="TCWOTU/Banner Tablet.png" alt="Tablet View - Medium size image.">
+        <img src="Banner Desktop.png" alt="Desktop View - Large, high-resolution image.">
+    </picture>
+            </h1>
+            <h2>
+            
+            <p> The Crushing Weight Of This Universe has been a comic that I have been working on for the last few years. Read Here:</p>
+            <ul>
+                <li><a href = "https://namicomi.com/en/title/hek4yCrH/the-crushing-weight-of-this-universe" target="_blank">NamiComi</a></li>
+                <li><a href = "https://www.webtoons.com/en/canvas/the-crushing-weight-of-this-universe/list?title_no=998748" target="_blank">Webtoons</a></li>
+                <li><a href = "https://mangadex.org/title/cc049e8b-d766-4120-8a63-218f299686bb/the-crushing-weight-of-this-universe" target="_blank">Mangadex</a></li>
+            
+            </ul>
+         <p> Chapters:
+                (comic reader under construction) </p>
+                
+                </h2>
+            <div class="grid-container">
+                <div class= "grid-item">
+                    <a href="Chapter 1.html"><img src="Chapter 1/Chapter 1_001.jpg" style="width:100%" alt="Chapter 1")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 2.html"><img src="Chapter 2/Chapter 2_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 3.html"><img src="Chapter 3/Chapter 3_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 4.html"><img src="Chapter 4/Chapter 4_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">                
+                    <a href="Chapter 5.html"><img src="Chapter 5/Chapter 5_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 6.html"><img src="Chapter 6/Chapter 6_002.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 7.html"><img src="Chapter 7/Chapter 7_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 8.html"><img src="Chapter 8/Chapter 8_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 9.html"><img src="Chapter 9/Chapter 9_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 10.html"><img src="Chapter 10/Chapter 10_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 11.html"><img src="Chapter 11/Chapter 11_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 12.html"><img src="Chapter 12/Chapter 12_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 13.html"><img src="Chapter 13/Chapter 13_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 14.html"><img src="Chapter 14/Chapter 14_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 15.html"><img src="Chapter 15/Chapter 15_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 16.html"><img src="Chapter 16/Chapter 16_001.jpg" style="width:100%")></a>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 17.html"><img src="Chapter 17/Chapter 17_001.jpg" style="width:100%")></a>
+                </div>
+            </div>
+                        
         </div>
-
-        <div id="page-display">
-            <img id="comic-page" src="Chapter%25201/Chapter%201_001.jpg" alt="Comic Page">
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-        
-        *//
-        
-        </div>
-    </body>
+</body>
 </html>
