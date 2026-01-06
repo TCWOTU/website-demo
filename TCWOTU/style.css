@@ -1,6 +1,6 @@
 /* Basic Reset and Typography */
 body {
-    font-family: "Komika Slick", sans-serif;
+    font-family: "Trebuchet", sans-serif;
     margin: 0;
     padding: 0;
     color: #333;
@@ -47,10 +47,6 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#hero {
-    text-align: center;
-    background-color: #e0f7fa;
-}
 
 .button {
     display: inline-block;
@@ -81,14 +77,6 @@ footer {
     width: 100%;
 }
 
-   .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px;
-    gap: 0px;
-  }
- 
   .image-wrapper img {
     max-width: 100%;
     height: auto;
@@ -96,18 +84,6 @@ footer {
 
   }
 
-@media (min-width: 600px) {
-  .header {grid-area: 1 / span 6;}
-  .menu {grid-area: 2 / span 1;}
-  .content {grid-area: 2 / span 4;}
-  .facts {grid-area: 2 / span 1;}
-  .footer {grid-area: 3 / span 6;}
-}
-
-* {
-  box-sizing: border-box;
-    text-align: center;
-}
 
 .grid-container {
   display: grid;
@@ -121,7 +97,41 @@ footer {
   gap: 10px;
 }
    
+/*container things */
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create 3 equal columns that sits next to each other */
+.column {
+  flex: 33%;
+  max-width: 33%;
+  padding: 4 4px;
+}
+
+.column img {
+  margin-top: 4px;
+  vertical-align: middle;
+}
+
+/* Responsive layout - makes a two column-layout instead of 3 columns */
+@media screen and (max-width: 1200px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
 
 /*Comic reader stuff*/
 

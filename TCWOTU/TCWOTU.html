@@ -80,7 +80,7 @@
             width: auto;
             /* Maintain the aspect ratio and crop if necessary to fill the container */
             height: 100%; /* Fixed height for visual uniformity */
-            object-fit: cover;
+            object-fit: scale-down;
             display: block; /* Removes any extra space below the image */
         }
 
@@ -115,7 +115,52 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin-top: 1px;
         }
+.overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            /* Start with the overlay completely transparent */
+            opacity: 0;
+            /* Set the background color and transparency for the overlay effect */
+            background-color: rgba(0, 0, 0, 0.7); 
+            /* Smoothly fade the overlay in/out */
+            transition: opacity 0.3s ease-in-out; 
+            
+            /* Center the text content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 15px;
+        }
 
+        /* --- 4. Hover Effect --- */
+        .grid-item:hover .overlay {
+            opacity: 1; /* Make the overlay fully visible on hover */
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.03); /* Slight zoom effect on the image */
+        }
+        
+        /* --- 5. Text Styling (Optional) --- */
+        .overlay h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            justify-content: left;
+        }
+        .overlay p {
+            font-size: 0.9em;
+            font-style: italic;
+            justify-content: left;
+        }
+            
     </style>
             </head>
     
@@ -123,78 +168,179 @@
             <div class="header">
             <h1>
             <picture>
-        <source media="(max-width: 600px)" srcset="TCWOTU/Banner Mobile.png" alt="Mobile View - Small, cropped image.">
-        <source media="(max-width: 1000px)" srcset="TCWOTU/Banner Tablet.png" alt="Tablet View - Medium size image.">
-        <img src="Banner Desktop.png" alt="Desktop View - Large, high-resolution image.">
+        <source srcset="TCWOTU/Banner Mobile.png" media="(max-width: 600px)"  alt="Mobile View - Small, cropped image.">
+        <source srcset="TCWOTU/Banner Tablet.png" media="(max-width: 1000px)"  alt="Tablet View - Medium size image.">
+        <img src="Banner Desktop.png" alt="Desktop View - Large, high-resolution image." style="width:100%; height:auto;">
     </picture>
             </h1>
             <h2>
             
-            <p> The Crushing Weight Of This Universe has been a comic that I have been working on for the last few years. Read Here:</p>
-            <ul>
-                <li><a href = "https://namicomi.com/en/title/hek4yCrH/the-crushing-weight-of-this-universe" target="_blank">NamiComi</a></li>
-                <li><a href = "https://www.webtoons.com/en/canvas/the-crushing-weight-of-this-universe/list?title_no=998748" target="_blank">Webtoons</a></li>
-                <li><a href = "https://mangadex.org/title/cc049e8b-d766-4120-8a63-218f299686bb/the-crushing-weight-of-this-universe" target="_blank">Mangadex</a></li>
+The Crushing Weight Of This Universe has been a comic that I have been working on for the last few years. Read Here:
+
+            <a href = "https://namicomi.com/en/title/hek4yCrH/the-crushing-weight-of-this-universe" target="_blank">NamiComi</a>
+            <a href = "https://www.webtoons.com/en/canvas/the-crushing-weight-of-this-universe/list?title_no=998748" target="_blank">Webtoons</a>
+            <a href = "https://mangadex.org/title/cc049e8b-d766-4120-8a63-218f299686bb/the-crushing-weight-of-this-universe" target="_blank">Mangadex</a>
             
-            </ul>
-         <p> Chapters:
+
+         <p> Chapters covers:
                 (comic reader under construction) </p>
+        </h2>
                 
-                </h2>
-            <div class="grid-container">
+<div class="grid-container">
+    
+            <div class= "grid-item">
+                    <a href="Chapter 25.html"><img src="Chapter 25/Chapter 25_001.jpg" style="width:100%"></a>
+                    <div class="overlay">
+                        <h3>Chapter 25</h3>
+                  </div>
+        </div>
+            <div class= "grid-item">
+                    <a href="Chapter 24.html"><img src="Chapter 24/Chapter 24_001.jpg" style="width:100%"></a>
+                    <div class="overlay">
+                        <h3>Chapter 24</h3>
+                  </div>
+        </div>
+    
+        <div class= "grid-item">
+                    <a href="Chapter 23.html"><img src="Chapter 23/Chapter 23_001.jpg" style="width:100%"></a>
+                    <div class="overlay">
+                        <h3>Chapter 23</h3>
+                  </div>
+        </div>
+    
                 <div class= "grid-item">
-                    <a href="Chapter 1.html"><img src="Chapter 1/Chapter 1_001.jpg" style="width:100%" alt="Chapter 1")></a>
+                    <a href="Chapter 22.html"><img src="Chapter 22/Chapter 22_001.jpg" style="width:100%"></a>
+                    <div class="overlay">
+                        <h3>Chapter 22</h3>
+                  </div>
+        </div>
+            <div class= "grid-item">
+                    <a href="Chapter 21.html"><img src="Chapter 21/Chapter 21_001.jpg" style="width:100%"></a>
+                    <div class="overlay">
+                        <h3>Chapter 21</h3>
+                  </div>
+        </div>
+        <div class= "grid-item">
+                    <a href="Chapter 20.html"><img src="Chapter 20/Chapter 20_001.jpg" style="width:100%"></a>
+                    <div class="overlay">
+                        <h3>Chapter 20</h3>
+                  </div>
+        </div>
+                <div class= "grid-item">
+                    <a href="Chapter 19.html"><img src="Chapter 19/Chapter 19_001.jpg" style="width:100%"></a>
+                    <div class="overlay">
+                        <h3>Chapter 19</h3>
+                  </div>
+        </div>
+            <div class= "grid-item">
+                    <a href="Chapter 18.html"><img src="Chapter 18/Chapter 18_001.jpg" style="width:100%"></a>
+                    <div class="overlay">
+                        <h3>Chapter 18</h3>
+                  </div>
+        </div>
+                <div class= "grid-item">
+                    <a href="Chapter 17.html"><img src="Chapter 17/Chapter 17_001.jpg" style="width:100%"></a>
+                    <div class="overlay">
+                        <h3>Chapter 17</h3>
+                  </div>
+        </div>
+                        <div class= "grid-item">
+                    <a href="Chapter 16.html"><img src="Chapter 16/Chapter 16_001.jpg" style="width:100%"></a>
+                        <div class="overlay">
+                        <h3>Chapter 16</h3>
+                  </div>
+                </div>
+                        <div class= "grid-item">
+                    <a href="Chapter 15.html"><img src="Chapter 15/Chapter 15_001.jpg" style="width:100%"></a>
+                                                <div class="overlay">
+                        <h3>Chapter 15</h3>
+                  </div>
+                </div>
+                        <div class= "grid-item">
+                    <a href="Chapter 14.html"><img src="Chapter 14/Chapter 14_001.jpg" style="width:100%"></a>
+                                                <div class="overlay">
+                        <h3>Chapter 14</h3>
+                  </div>
+                </div>
+                        <div class= "grid-item">
+                    <a href="Chapter 13.html"><img src="Chapter 13/Chapter 13_001.jpg" style="width:100%"></a>
+                                                <div class="overlay">
+                        <h3>Chapter 13</h3>
+                  </div>
+                </div>
+                        <div class= "grid-item">
+                    <a href="Chapter 12.html"><img src="Chapter 12/Chapter 12_001.jpg" style="width:100%"></a>
+                                                <div class="overlay">
+                        <h3>Chapter 12</h3>
+                  </div>
                 </div>
                 <div class= "grid-item">
-                    <a href="Chapter 2.html"><img src="Chapter 2/Chapter 2_001.jpg" style="width:100%")></a>
+                    <a href="Chapter 11.html"><img src="Chapter 11/Chapter 11_001.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 11</h3>
+                  </div>
                 </div>
                 <div class= "grid-item">
-                    <a href="Chapter 3.html"><img src="Chapter 3/Chapter 3_001.jpg" style="width:100%")></a>
+                    <a href="Chapter 10.html"><img src="Chapter 10/Chapter 10_001.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 10</h3>
+                  </div>
                 </div>
                 <div class= "grid-item">
-                    <a href="Chapter 4.html"><img src="Chapter 4/Chapter 4_001.jpg" style="width:100%")></a>
+                    <a href="Chapter 9.html"><img src="Chapter 9/Chapter 9_001.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 9</h3>
+                  </div>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 8.html"><img src="Chapter 8/Chapter 8_001.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 8</h3>
+                  </div>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 7.html"><img src="Chapter 7/Chapter 7_001.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 7</h3>
+                  </div>
+                </div>
+                <div class= "grid-item">
+                    <a href="Chapter 6.html"><img src="Chapter 6/Chapter 6_002.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 6</h3>
+                  </div>
                 </div>
                 <div class= "grid-item">                
-                    <a href="Chapter 5.html"><img src="Chapter 5/Chapter 5_001.jpg" style="width:100%")></a>
+                    <a href="Chapter 5.html"><img src="Chapter 5/Chapter 5_001.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 5</h3>
+                  </div>
                 </div>
                 <div class= "grid-item">
-                    <a href="Chapter 6.html"><img src="Chapter 6/Chapter 6_002.jpg" style="width:100%")></a>
+                    <a href="Chapter 4.html"><img src="Chapter 4/Chapter 4_001.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 4</h3>
+                  </div>
                 </div>
                 <div class= "grid-item">
-                    <a href="Chapter 7.html"><img src="Chapter 7/Chapter 7_001.jpg" style="width:100%")></a>
+                    <a href="Chapter 3.html"><img src="Chapter 3/Chapter 3_001.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 3</h3>
+                  </div>
                 </div>
                 <div class= "grid-item">
-                    <a href="Chapter 8.html"><img src="Chapter 8/Chapter 8_001.jpg" style="width:100%")></a>
+                    <a href="Chapter 2.html"><img src="Chapter 2/Chapter 2_001.jpg" style="width:100%"></a>
+                                        <div class="overlay">
+                        <h3>Chapter 2</h3>
+                  </div>
                 </div>
-                <div class= "grid-item">
-                    <a href="Chapter 9.html"><img src="Chapter 9/Chapter 9_001.jpg" style="width:100%")></a>
+                    <div class= "grid-item">
+                    <a href="Chapter 1.html"><img src="Chapter 1/Chapter 1_001.jpg" style="width:100%" alt="Chapter 1"></a>
+                                            <div class="overlay">
+                        <h3>Chapter 1</h3>
+                  </div>
                 </div>
-                <div class= "grid-item">
-                    <a href="Chapter 10.html"><img src="Chapter 10/Chapter 10_001.jpg" style="width:100%")></a>
                 </div>
-                <div class= "grid-item">
-                    <a href="Chapter 11.html"><img src="Chapter 11/Chapter 11_001.jpg" style="width:100%")></a>
-                </div>
-                <div class= "grid-item">
-                    <a href="Chapter 12.html"><img src="Chapter 12/Chapter 12_001.jpg" style="width:100%")></a>
-                </div>
-                <div class= "grid-item">
-                    <a href="Chapter 13.html"><img src="Chapter 13/Chapter 13_001.jpg" style="width:100%")></a>
-                </div>
-                <div class= "grid-item">
-                    <a href="Chapter 14.html"><img src="Chapter 14/Chapter 14_001.jpg" style="width:100%")></a>
-                </div>
-                <div class= "grid-item">
-                    <a href="Chapter 15.html"><img src="Chapter 15/Chapter 15_001.jpg" style="width:100%")></a>
-                </div>
-                <div class= "grid-item">
-                    <a href="Chapter 16.html"><img src="Chapter 16/Chapter 16_001.jpg" style="width:100%")></a>
-                </div>
-                <div class= "grid-item">
-                    <a href="Chapter 17.html"><img src="Chapter 17/Chapter 17_001.jpg" style="width:100%")></a>
-                </div>
-            </div>
-                        
         </div>
 </body>
 </html>
