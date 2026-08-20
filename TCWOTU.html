@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Art Portfolio</title>
+    <style>
+          /* Dark Theme Reset & Base Setup */
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
+
+          body {
+            background-color: #0b0b0d;
+            color: #f0f0f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+          }
+
+      header {
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            width: 100%;
+          }
+
+          header h1 {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+          }
+
+          header nav {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+          }
+            .cta-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--accent-color);
+                color: #fff;
+                padding: 0.8rem 1.8rem;
+                min-height: 48px;
+                border-radius: 30px;
+                font-weight: 600;
+                box-shadow: var(--shadow-sm);
+                transition:
+                    background-color 0.2s ease,
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease;
+            }
+
+            .cta-button:hover {
+                background-color: var(--accent-hover);
+                transform: translateY(-1px);
+                box-shadow: var(--shadow-md);
+            }
+
+          /* Container Wrapper & Navigation Layer */
+          .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            margin: auto 0;
+            overflow: hidden;
+          }
+
+          /* Gradient Fading Overlay Buttons */
+          .nav-btn {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 15vw;
+            max-width: 120px;
+            z-index: 20;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            outline: none;
+            transition: opacity 0.3s ease, color 0.3s ease;
+            /* Disable blue highlight on mobile tap */
+            -webkit-tap-highlight-color: transparent;
+          }
+
+          .nav-btn-left {
+            left: 0;
+            background: linear-gradient(to right, rgba(11, 11, 13, 0.95) 0%, rgba(11, 11, 13, 0.6) 50%, transparent 100%);
+            padding-right: 2vw;
+          }
+
+          .nav-btn-right {
+            right: 0;
+            background: linear-gradient(to left, rgba(11, 11, 13, 0.95) 0%, rgba(11, 11, 13, 0.6) 50%, transparent 100%);
+            padding-left: 2vw;
+          }
+
+          .nav-btn:hover {
+            color: #a0a0c0;
+          }
+
+          /* Hide arrow button when at start or end */
+          .nav-btn.disabled {
+            opacity: 0;
+            pointer-events: none;
+          }
+
+          /* Horizontal Gallery Container */
+          .gallery-container {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: hidden; /* Scrollbar disabled for button-only navigation */
+            scroll-snap-type: x mandatory;
+            padding: 2rem 15vw;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+
+          .gallery-container::-webkit-scrollbar {
+            display: none;
+          }
+
+          /* Individual Artwork Card */
+          .art-card {
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                        opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform, opacity;
+          }
+
+          .art-card img {
+            height: 48vh;
+            width: auto;
+            max-width: 70vw;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            transition: transform 0.4s ease;
+          }
+
+          .art-info {
+            margin-top: 1.2rem;
+            text-align: center;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+          }
+
+          .art-info h2 {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+          }
+
+          .art-info p {
+            font-size: 0.75rem;
+            color: #888899;
+            margin-top: 0.2rem;
+          }
+
+          /* Footer Controls */
+          footer {
+            padding: 1rem 1.5rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #666677;
+          }
+
+          .counter {
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+          }
+
+          .key-hint {
+            display: none;
+          }
+
+          /* Tablet Media Queries (≥768px) */
+          @media (min-width: 768px) {
+            header {
+              padding: 2rem 2.5rem 1rem;
+            }
+
+            header h1 {
+              font-size: 1.3rem;
+            }
+
+            header nav {
+              font-size: 0.85rem;
+            }
+
+            .gallery-container {
+                width: 100%
+              gap: 2.5rem;
+              padding: 2.5rem 30vw;
+            }
+
+            .art-card img {
+              height: 52vh;
+              max-width: 75vw;
+            }
+
+            .art-info h2 {
+              font-size: 1.05rem;
+            }
+
+            .art-info p {
+              font-size: 0.8rem;
+            }
+
+            footer {
+              padding: 1rem 2.5rem 2rem;
+              font-size: 0.8rem;
+            }
+
+            .nav-btn {
+              font-size: 2.2rem;
+            }
+          }
+
+          /* Desktop Media Queries (≥1024px) */
+          @media (min-width: 1024px) {
+            header {
+                size:auto
+              padding: 2.5rem 3rem 1rem;
+            }
+
+            header h1 {
+              font-size: 1.5rem;
+            }
+
+            .gallery-container {
+              gap: 3rem;
+              padding: 3rem 40vw;
+            }
+
+            .art-card img {
+              height: 55vh;
+              max-width: 80vw;
+            }
+
+            .art-card:hover img {
+              transform: scale(1.03);
+            }
+
+            .key-hint {
+              display: block;
+            }
+
+            .nav-btn {
+              font-size: 2.5rem;
+            }
+          }
+       /* Hero Section */
+                      .hero {
+                        max-width: 1100px;
+                        margin: 0 auto;
+                          padding: 0;
+                             text-align: center;
+                      }
+
+                      .hero h1 {
+                        font-size: clamp(2rem, 5vw, 3.25rem);
+                        font-weight: 800;
+                        letter-spacing: -1px;
+                        margin-bottom: 1rem;
+                        background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                      }
+
+                      .hero p {
+                        font-size: clamp(1rem, 2.5vw, 1.2rem);
+                        color: var(--text-muted);
+                        max-width: 600px;
+                        margin: 0 auto 2rem;
+                      }
+            .container {
+        width: 100%; height:auto
+       }
+
+      .container img {
+        max-height:100%;
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <section class="hero">
+        <div class="container">
+          <img src="Banner%20Desktop.png" alt="TCWOTU" width="stretch" />
+          <p>Read on:<a href="https://namicomi.com/en/title/hek4yCrH/the-crushing-weight-of-this-universe" class="cta-button" padding=1rem>NamiComi</a><a href="https://mangadex.org/title/cc049e8b-d766-4120-8a63-218f299686bb/the-crushing-weight-of-this-universe" class="cta-button" padding=2rem>Mangadex</a><a href="www.webtoons.com/en/canvas/the-crushing-weight-of-this-universe/list?title_no=998748" class="cta-button" padding=1rem>Webtoons</a></p>
+          <p>Website Reader Coming Soon!</p>
+        </div>
+      </section>
+    </header>
+
+    <div class="gallery-wrapper">
+      <!-- Fading Navigation Arrow Buttons -->
+      <button class="nav-btn nav-btn-left disabled" id="prevBtn" aria-label="Previous Artwork">❮</button>
+      <button class="nav-btn nav-btn-right" id="nextBtn" aria-label="Next Artwork">❯</button>
+
+      <div class="gallery-container" id="gallery">
+        <!-- Artwork 1 -->
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 25_001.jpg" alt="Something Deeper" />
+          <div class="art-info">
+            <h2>Chapter 25</h2>
+            <p>Something Deeper</p>
+          </div>
+        </article>
+
+        <!-- Artwork 2 -->
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 24_001.jpg" alt="You're Telling Me...?" />
+          <div class="art-info">
+            <h2>Chapter 24</h2>
+            <p>You're Telling Me...?</p>
+          </div>
+        </article>
+
+        <!-- Artwork 3 -->
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 23_001.jpg" alt="And What Would You Have Me Do?" />
+          <div class="art-info">
+            <h2>Chapter 23</h2>
+            <p>And What Would You Have Me Do?</p>
+          </div>
+        </article>
+
+        <!-- Artwork 4 -->
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 22_001.jpg" alt="Welcome To The Arena Part 4" />
+          <div class="art-info">
+            <h2>Chapter 22</h2>
+            <p>Welcome To The Arena Part 4</p>
+          </div>
+        </article>
+
+        <!-- Artwork 5 -->
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 21_001.jpg" alt="Welcome To The Arena Part 3" />
+          <div class="art-info">
+            <h2>Chapter 21</h2>
+            <p>Welcome To The Arena Part 3</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 20_001.jpg" alt="Welcome To The Arena Part 2" />
+          <div class="art-info">
+            <h2>Chapter 20</h2>
+            <p>Welcome To The Arena Part 2</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 19_001.jpg" alt="Welcome To The Arena" />
+          <div class="art-info">
+            <h2>Chapter 19</h2>
+            <p>Welcome To The Arena</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 18_001.jpg" alt="The Wheel Turns" />
+          <div class="art-info">
+            <h2>Chapter 18</h2>
+            <p>The Wheel Turns</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 17_001.jpg" alt="...Diligite Invicem" />
+          <div class="art-info">
+            <h2>Chapter 17</h2>
+            <p>...Diligite Invicem</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 16_001.jpg" alt="Dulce Et Decorum Est..." />
+          <div class="art-info">
+            <h2>Chapter 16</h2>
+            <p>Dulce Et Decorum Est</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 15_001.jpg" alt="In The Shade Of Trees" />
+          <div class="art-info">
+            <h2>Chapter 15</h2>
+            <p>In The Shade Of Trees</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 14_001.jpg" alt="Teething Issues" />
+          <div class="art-info">
+            <h2>Chapter 14</h2>
+            <p>Teething Issues</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 13_001.jpg" alt="Salvation Lies Within" />
+          <div class="art-info">
+            <h2>Chapter 13</h2>
+            <p>Salvation Lies Within</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 12_001.jpg" alt="Salvation Lies Within" />
+          <div class="art-info">
+            <h2>Chapter 12</h2>
+            <p>Salvation Lies Within</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 11_001.jpg" alt="It's Called Teaching A Man To Fish" />
+          <div class="art-info">
+            <h2>Chapter 11</h2>
+            <p>It's Called Teaching A Man To Fish</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 10_001.jpg" alt="I Told You This Is A Terrible Idea" />
+          <div class="art-info">
+            <h2>Chapter 10</h2>
+            <p>I Told You This Is A Terrible Idea</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 9_001.jpg" alt="Not This Shit Again" />
+          <div class="art-info">
+            <h2>Chapter 9</h2>
+            <p>Not This Shit Again</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 8_001.jpg" alt="Under New Management" />
+          <div class="art-info">
+            <h2>Chapter 8</h2>
+            <p>Under New Management</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 7_001.jpg" alt="Didn't Expect That, Did You?" />
+          <div class="art-info">
+            <h2>Chapter 7</h2>
+            <p>Didn't Expect That, Did You?</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 6_001.jpg" alt="I Really Hate My Job" />
+          <div class="art-info">
+            <h2>Chapter 6</h2>
+            <p>I Really Hate My Job</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 5_001.jpg" alt="You Can Have This Victory" />
+          <div class="art-info">
+            <h2>Chapter 5</h2>
+            <p>You Can Have This Victory</p>
+          </div>
+        </article>
+
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 4_001.jpg" alt="Formal Negotiations" />
+          <div class="art-info">
+            <h2>Chapter 4</h2>
+            <p>Formal Negotiations</p>
+          </div>
+        </article>
+        
+        <article class="art-card">
+          <img src="Chapter Covers/Chapter 3_001.jpg" alt="Please Don't Overestimate Your Importance To Me" />
+          <div class="art-info">
+            <h2>Chapter 3</h2>
+            <p>Please Don't Overestimate Your Importance To Me</p>
+          </div>
+        </article>
+        
+           <article class="art-card">
+          <img src="Chapter Covers/Chapter 2_001.jpg" alt="A Calm And Reasonable Response" />
+          <div class="art-info">
+            <h2>Chapter 2</h2>
+            <p>A Calm And Reasonable Response</p>
+          </div>
+            </article>
+               <article class="art-card">
+          <img src="Chapter Covers/Chapter 1_001.jpg" alt="Here We Go Again" />
+          <div class="art-info">
+            <h2>Chapter 1</h2>
+            <p>Here We Go Again</p>
+          </div>
+            </article>
+        
+      </div>
+    </div>
+
+    <footer>
+      <div class="counter" id="counter">01 / 10</div>
+      <div class="key-hint">Use ← → keys</div>
+    </footer>
+
+    <script>
+      const gallery = document.getElementById("gallery");
+      const cards = document.querySelectorAll(".art-card");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const counter = document.getElementById("counter");
+
+      let currentIndex = 0;
+
+      // Scroll to specific slide index
+      function scrollToIndex(index) {
+        if (index < 0 || index >= cards.length) return;
+        currentIndex = index;
+
+        const targetCard = cards[currentIndex];
+        const cardCenter = targetCard.offsetLeft + targetCard.clientWidth / 2;
+        const targetScroll = cardCenter - gallery.clientWidth / 2;
+
+        gallery.scrollTo({
+          left: targetScroll,
+          behavior: "smooth"
+        });
+
+        updateUI();
+      }
+
+      // Dynamic Scale & Opacity based on distance from center
+      function updateCardTransforms() {
+        const galleryCenter = gallery.scrollLeft + gallery.clientWidth / 2;
+
+        cards.forEach((card) => {
+          const cardCenter = card.offsetLeft + card.clientWidth / 2;
+          const distanceFromCenter = Math.abs(galleryCenter - cardCenter);
+
+          const maxDistance = gallery.clientWidth / 2;
+          const normalizedDistance = Math.min(distanceFromCenter / maxDistance, 1);
+
+          const scale = 1 - normalizedDistance * 0.22;
+          const opacity = 1 - normalizedDistance * 0.6;
+
+          card.style.transform = `scale(${scale})`;
+          card.style.opacity = opacity;
+        });
+      }
+
+      // Update buttons, active counter, and opacity transforms
+      function updateUI() {
+        updateCardTransforms();
+
+        // Update arrow button visibility
+        if (currentIndex === 0) {
+          prevBtn.classList.add("disabled");
+        } else {
+          prevBtn.classList.remove("disabled");
+        }
+
+        if (currentIndex === cards.length - 1) {
+          nextBtn.classList.add("disabled");
+        } else {
+          nextBtn.classList.remove("disabled");
+        }
+
+        // Update footer counter display
+        const total = String(cards.length).padStart(2, "0");
+        const current = String(currentIndex + 1).padStart(2, "0");
+        counter.textContent = `${current} / ${total}`;
+      }
+
+      // Click events for Arrow Buttons
+      prevBtn.addEventListener("click", () => scrollToIndex(currentIndex - 1));
+      nextBtn.addEventListener("click", () => scrollToIndex(currentIndex + 1));
+
+      // Keyboard arrow keys
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") {
+          scrollToIndex(currentIndex + 1);
+        } else if (e.key === "ArrowLeft") {
+          scrollToIndex(currentIndex - 1);
+        }
+      });
+
+      // Sync transforms during smooth scrolling
+      gallery.addEventListener("scroll", updateCardTransforms, { passive: true });
+      window.addEventListener("resize", () => scrollToIndex(currentIndex));
+
+      // Initial setup
+      scrollToIndex(0);
+    </script>
+  </body>
+</html>
